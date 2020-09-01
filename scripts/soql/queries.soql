@@ -1,0 +1,21 @@
+// Execute SOQL statements:
+
+//  retrieve conference sessions
+SELECT Id, Name, Session_Date__c, Level__c FROM Session__c
+
+// retrieve the beginner sessions (assuming you created any)
+SELECT Id, Name, Session_Date__c, Level__c FROM Session__c
+WHERE Level__c = 'Beginner'
+
+// retrieve a list of speakers ordered by first name and last name
+SELECT Id, First_Name__c, Last_Name__c, Email__c FROM Speaker__c
+ORDER BY First_Name__c, Last_Name__c
+
+/* retrieve a list of sessions assigned to speakers with related 
+    session and speaker information */
+SELECT Session__r.Name,
+        Session__r.Session_Date__c,
+        Speaker__r.First_Name__c,
+        Speaker__r.Last_Name__c
+FROM Session_Speaker__c
+ORDER BY Session__r.Session_Date__c, Session__r.Name
